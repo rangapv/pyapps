@@ -1,0 +1,9 @@
+{% extends ‘base.html’ %}
+{% block content %}
+<div style=”background-color: #404040; width: 500px; height: 200px; color: white; margin: 200px 50px 100px 50px;”>
+<h1>Welcome!!</h1>
+<br>
+<h3>Click on start to start the survey</h3>
+<center><a class = “btn btn-success “ href=”{% url ‘polls:index’ %}”>Start</a></center>
+</div>
+{% endblock %}
