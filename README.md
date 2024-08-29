@@ -1,5 +1,9 @@
 # pyapps
 Apps created in python
-* pip install streamlit
-* RUN THE APPS
-  * streamlit run file.py
+
+To-INSTALL:
+* pip3 install streamlit
+
+
+TO-RUN THE APPS
+  * python3 -m streamlit run file.py
