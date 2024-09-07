@@ -83,14 +83,17 @@ class docklist(argparse.Action):
       t3 = subprocess.run("which docker", capture_output=True, shell=True, text=True, check=True)
       #print("returncode is" + str(t1.returncode))
       if ( t1.returncode == 0 ):
-       print ("the output is successful :" + t1.stdout )
-       print (f'the Docker version installed is \"{t2.stdout}\" and install directory is \"{t3.stdout}\"') 
+       #print ("the output is successful :" + t1.stdout )
+       #print (f'the Docker version installed is \"{t2.stdout}\" and install directory is \"{t3.stdout}\"') 
+        t4 = [("docker-status",t1.stdout),("docker-version",t2.stdout),("docker-in",t3.stdout)]
+        print (t4)
       else:
        print ("the command failed :" + str(t1))
       values=t2.stdout
       t = (t1.stdout,t2.stdout,t3.stdout)
       setattr(namespace, self.dest, values)
-      return (values)
+      return (t)
+      #return (values)
 
 class Imagelist(argparse.Action):
    def __init__(self, option_strings, dest, nargs=None, **kwargs):

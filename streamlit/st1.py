@@ -53,11 +53,23 @@ if dokstat:
    b = './dokarg.py -dstat f'
    t1 = subprocess.run(b, capture_output=True, shell=True, text=True, check=True)
    #st.write(f'{t1.stdout}')
-
-
-   st.table(pd.DataFrame({
-    'Docker status': [t1.stdout],
-   }))
+   #print("t1 is {}".format(t1.stdout))
+   len1 = len(t1.stdout)
+   #print("the lengthis {}".format(len1))
+   d2 = t1.stdout
+   #print (d2[0])
+   d1 = (t1.stdout).split(",")
+   #st.table(pd.DataFrame({
+   # d1[0]: [d1[1]],
+   #}))
+   st.json(
+      {
+        d1[0]: d1[1],
+        d1[2]: [d1[3],d1[4]],
+        d1[5]: d1[6]
+      }
+   )
+  #st.table(df)
 
 imgsha = st.checkbox("Image sha layers")
 
