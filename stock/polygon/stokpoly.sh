@@ -19,7 +19,7 @@ if __name__ == "__main__":
  print(f'client1 is {client1}')
 
  aggs = []
- list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG", "TSLA", "MSFT" ]
+ list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  for x in list1:
   aggs = client1.get_aggs(
     x,
