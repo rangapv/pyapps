@@ -14,21 +14,22 @@ class fetch:
 if __name__ == "__main__":
  p1 = fetch()
  print (f'client is {p1}')
- API_KEY = "080dt12muu7EP9aOOYYTb1LDEOhPsTr3"
+ API_KEY = "Insert-your-api-key"
  client1 = p1.polyget(API_KEY)
  print(f'client1 is {client1}')
 
  aggs = []
- list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
+ list1 = ["META", "AMZN", "GOOG" ]
+ #list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  for x in list1:
   aggs = client1.get_aggs(
     x,
     1,
-    "minute",
-    "2024-11-14",
-    "2024-11-14",
-   # limit=10 
+    "day",
+    "2024-11-15",
+    "2024-11-15"
+    #limit=1 
   )
     #aggs.append(a)
+  print(f"aggs for \"{x}\" s {aggs}")
 
- print(f"aggs is {aggs}")
