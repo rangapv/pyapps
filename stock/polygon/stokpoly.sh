@@ -14,7 +14,7 @@ class fetch:
 if __name__ == "__main__":
  p1 = fetch()
  print (f'client is {p1}')
- API_KEY = "H96GA05xheVXEGHuyXpB1hPQKOWve71Y"
+ API_KEY = "insert-api-key"
  client1 = p1.polyget(API_KEY)
  print(f'client1 is {client1}')
 

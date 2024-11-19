@@ -5,7 +5,7 @@
 from polygon import RESTClient
 from polygon.rest import models
 
-API_KEY = "H96GA05xheVXEGHuyXpB1hPQKOWve71Y"
+API_KEY = "insert-api-key"
 client = RESTClient(API_KEY)
 
 aggs = client.get_aggs(
