@@ -5,7 +5,7 @@
 from polygon import RESTClient
 from polygon.rest import models
 
-API_KEY = "080dt12muu7EP9aOOYYTb1LDEOhPsTr3"
+API_KEY = "H96GA05xheVXEGHuyXpB1hPQKOWve71Y"
 client = RESTClient(API_KEY)
 
 aggs = client.get_aggs(
@@ -16,3 +16,6 @@ aggs = client.get_aggs(
     "2024-11-14",
 )
 print(aggs)
+details = client.get_ticker_details("AAPL")
+detailcap = details.market_cap
+print (detailcap)
