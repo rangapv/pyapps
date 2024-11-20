@@ -18,6 +18,15 @@ class fetch:
        client = RESTClient(API)
        return client
 
+    def printout(self):
+       print(f'client is {p1}')   
+       print(f'aggs is {aggs}')
+       print(f"timesstap numeral is {p5}")
+       print (f"pl is {pl}")
+       print (f"l21 is {l21}")
+       print (f"l22 is {l23}")
+       print(f"aggs for \"{x}\" s {aggs}")
+
 #main BEGINS
 if __name__ == "__main__":
  p1 = fetch()
@@ -25,11 +34,10 @@ if __name__ == "__main__":
  API_KEY = os.getenv('API_POLYGON') 
  #API_KEY = "insert-api-key"
  client1 = p1.polyget(API_KEY)
- #print(f'client1 is {client1}')
 
  aggs = []
- list1 = ["META"]
- #list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
+ #list1 = ["META"]
+ list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  for x in list1:
   aggs = client1.get_previous_close_agg(x)
   #print(f'Timestamp is {aggs.PreviousCloseAgg}') 
@@ -43,11 +51,8 @@ if __name__ == "__main__":
   #)
     #sggs.append(a)
   details = client1.get_ticker_details(x)
-  print(f'aggs is {aggs}')
+  #print(f'aggs is {aggs}')
   detailcap = details.market_cap
-  #p2 = print (f"{details}")
-  #grep1 = details + "| grep 'timestamp='"
-  #print("grep1 is {grep1}")
   aggs1 = aggs[0]
   #aggs2 = aggs1[1] 
   #print(f"aggs1 is {aggs2}")
@@ -57,15 +62,10 @@ if __name__ == "__main__":
   p3 = "awk \'{split($0,a,\",\"); print a[6]}\'"
   l22 = subprocess.run(['echo "{}" | {}'.format(l21,p3)], capture_output=True, shell=True, text=True, check=False)
   l23 = l22.stdout
-  #print (f"pl is {pl}")
-  #print (f"l21 is {l21}")
-  #print (f"l22 is {l23}")
   p4 = "awk \'{split($0,a,\"=\"); print a[2]}\'"
   l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
   p5 = l23.stdout
-  print(f"timesstap numeral is {p5}")
   now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
   print (f"the stock with ticker symbol \"{x}\" has a market cap of {detailcap} as of {now1}")
- 
-  #print(f"aggs for \"{x}\" s {aggs}")
+  #p1.printout() 
 
