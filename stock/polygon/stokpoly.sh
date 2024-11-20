@@ -7,6 +7,10 @@ import re
 import subprocess
 from polygon import RESTClient 
 #from subprocess import PIPE
+import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class fetch:
         #apple = yf.Ticker("AAPL")
@@ -18,7 +22,7 @@ class fetch:
 if __name__ == "__main__":
  p1 = fetch()
  #print (f'client is {p1}')
- API_KEY = "4u9WRFur29Qpp54aPXcuRRcsvYsG4myp"
+ API_KEY = os.getenv('API_POLYGON') 
  #API_KEY = "insert-api-key"
  client1 = p1.polyget(API_KEY)
  #print(f'client1 is {client1}')
@@ -60,7 +64,8 @@ if __name__ == "__main__":
   l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
   p5 = l23.stdout
   print(f"timesstap numeral is {p5}")
-  print (f"the stock with ticker symbol \"{x}\" has a market cap of {detailcap}")
+  now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+  print (f"the stock with ticker symbol \"{x}\" has a market cap of {detailcap} as of {now1}")
  
   #print(f"aggs for \"{x}\" s {aggs}")
 

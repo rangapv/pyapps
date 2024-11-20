@@ -2,7 +2,12 @@
 #author:rangapv@yahoo.com
 #14-11-24
 
-from polygon import StocksClient 
+from polygon import RESTClient
+import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class fetch:
         #apple = yf.Ticker("AAPL")
@@ -14,7 +19,8 @@ class fetch:
 if __name__  == "main": 
  p1 = fetch()
  print (f'client is {p1}')
- client1 = p1.polyget("080dt12muu7EP9aOOYYTb1LDEOhPsTr3")
+ API_KEY = os.getenv('API_POLYGON')
+ client1 = p1.polyget(API_KEY)
  aggs = []
  for a in client1.list_aggs(
     "AAPL",
