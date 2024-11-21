@@ -26,6 +26,31 @@ class fetch:
        print (f"l21 is {l21}")
        print (f"l22 is {l23}")
        print(f"aggs for \"{x}\" s {aggs}")
+       print(f"now2 is {now2}")
+       #print(myList)
+       #print(myList1)
+       print(uplist)
+       print(revlist)
+       print (f"the stock with ticker symbol \"{x}\" has a market cap of {detailcap} as of {now1}")
+
+    def ascend(self,stock_dict1):
+       #print(stock_dict1)
+       #print((stock_dict1.values()))
+       #print(list(stock_dict1.values())[1])
+       myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
+       myList1 = [(i,stock_dict1 [i][0]) for i in sorted(stock_dict1.keys()) ]
+       #print(myList)
+
+       uplist = sorted(myList1,key=lambda x: x[1])
+       revlist = sorted(myList1,key=lambda x: x[1], reverse=True)
+
+       myList.sort()
+       myList1.sort()
+
+       print(f'TOP most-valuable-company from the list\n')
+       for i in revlist: print(f"{i}\n") 
+       print(f'Ascending order most-valuable-company from the list\n')
+       for i in uplist: print(f"{i}\n") 
 
 #main BEGINS
 if __name__ == "__main__":
@@ -36,8 +61,9 @@ if __name__ == "__main__":
  client1 = p1.polyget(API_KEY)
 
  aggs = []
- #list1 = ["META"]
+ #list1 = ["META", "NVDA" ]
  list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
+ stock_dict = {}
  for x in list1:
   aggs = client1.get_previous_close_agg(x)
   #print(f'Timestamp is {aggs.PreviousCloseAgg}') 
@@ -66,6 +92,7 @@ if __name__ == "__main__":
   l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
   p5 = l23.stdout
   now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-  print (f"the stock with ticker symbol \"{x}\" has a market cap of {detailcap} as of {now1}")
+  now2 = datetime.datetime.now().strftime('%d-%m-%y')
+  stock_dict = { **stock_dict, x : [ detailcap , now2 ] }
   #p1.printout() 
-
+ p1.ascend(stock_dict)
