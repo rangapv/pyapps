@@ -16,13 +16,13 @@ API_KEY = os.getenv('API_POLYGON')
 client = RESTClient(API_KEY)
 
 aggs = client.get_aggs(
-    "AAPL",
+    "TSLA",
     1,
     "day",
     "2024-11-14",
     "2024-11-14",
 )
 print(aggs)
-details = client.get_ticker_details("AAPL")
+details = client.get_ticker_details("AVGO")
 detailcap = details.market_cap
 print (detailcap)

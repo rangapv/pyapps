@@ -6,6 +6,7 @@ import os
 import re
 import subprocess
 from polygon import RESTClient 
+import time
 #from subprocess import PIPE
 import datetime
 from dotenv import load_dotenv
@@ -52,6 +53,32 @@ class fetch:
        print(f'Ascending order most-valuable-company from the list\n')
        for i in uplist: print(f"{i}\n") 
 
+
+    def getit(self,client11,stock_dict2):
+       list2 = ["SNOW","BRK.B","LLY","AVGO","DE"]
+       #print(stock_dict2)
+       time.sleep(60)
+       for x in list2:
+         aggs = client11.get_previous_close_agg(x)
+         details = client11.get_ticker_details(x)
+         detailcap = details.market_cap
+         aggs1 = aggs[0]
+         pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
+         l21 = pl.stdout
+         p3 = "awk \'{split($0,a,\",\"); print a[6]}\'"
+         l22 = subprocess.run(['echo "{}" | {}'.format(l21,p3)], capture_output=True, shell=True, text=True, check=False)
+         l23 = l22.stdout
+         p4 = "awk \'{split($0,a,\"=\"); print a[2]}\'"
+         l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
+         p5 = l23.stdout
+         now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+         now2 = datetime.datetime.now().strftime('%d-%m-%y')
+         stock_dict2 = { **stock_dict2, x : [ detailcap , now2 ] }
+  #p1.printout()
+       #print(stock_dict2)
+       p1.ascend(stock_dict2)
+
+
 #main BEGINS
 if __name__ == "__main__":
  p1 = fetch()
@@ -62,8 +89,8 @@ if __name__ == "__main__":
 
  aggs = []
  #list1 = ["META", "NVDA" ]
- list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  stock_dict = {}
+ list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  for x in list1:
   aggs = client1.get_previous_close_agg(x)
   #print(f'Timestamp is {aggs.PreviousCloseAgg}') 
@@ -95,4 +122,4 @@ if __name__ == "__main__":
   now2 = datetime.datetime.now().strftime('%d-%m-%y')
   stock_dict = { **stock_dict, x : [ detailcap , now2 ] }
   #p1.printout() 
- p1.ascend(stock_dict)
+ new23 = p1.getit(client1,stock_dict)
