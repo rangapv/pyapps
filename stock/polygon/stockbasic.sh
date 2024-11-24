@@ -3,6 +3,7 @@
 #14-11-24
 
 import os
+from numerize import numerize
 from polygon import RESTClient
 from polygon.rest import models
 
@@ -23,6 +24,6 @@ aggs = client.get_aggs(
     "2024-11-14",
 )
 print(aggs)
-details = client.get_ticker_details("AVGO")
+details = client.get_ticker_details("AAPL")
 detailcap = details.market_cap
-print (detailcap)
+print (f"${numerize.numerize(detailcap)}")

@@ -10,6 +10,7 @@ import time
 #from subprocess import PIPE
 import datetime
 from dotenv import load_dotenv
+from numerize import numerize
 
 load_dotenv()
 
@@ -49,12 +50,30 @@ class fetch:
        myList1.sort()
 
        print(f'TOP most-valuable-company from the list\n')
-       for i in revlist: print(f"{i}\n") 
+       i = 1
+       for key,value in revlist:
+         print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
+         valueprev = value
+         i = i + 1  
+      
        print(f'Ascending order most-valuable-company from the list\n')
-       for i in uplist: print(f"{i}\n") 
+       i = len(uplist) 
+       for key,value in uplist:
+         print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
+         valueprev = value
+         i = i - 1 
+       #p1.diff(revlist)
 
+    def diff(self,dict2):
+       print(dict2)
+       i = 1
+       for key,value in dict2:
+         print (f"{i}. {key} with the value ${numerize.numerize(value,3)}")  
+         valueprev = value
+         i = i + 1
 
     def getit(self,client11,stock_dict2):
+       #list2 = ["SNOW","BRK.B"]
        list2 = ["SNOW","BRK.B","LLY","AVGO","DE"]
        #print(stock_dict2)
        time.sleep(60)
@@ -88,7 +107,7 @@ if __name__ == "__main__":
  client1 = p1.polyget(API_KEY)
 
  aggs = []
- #list1 = ["META", "NVDA" ]
+ #list1 = ["META", "NVDA","AAPL"]
  stock_dict = {}
  list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  for x in list1:
