@@ -111,7 +111,7 @@ class fetch:
          value2 = numerize.numerize(value,4)
          serial.append(i)
          tikr.append(key)
-         ations.append(value2)
+         ations.append(value)
          i = i + 1
        df1 = pd.DataFrame({"serial": serial,"ticker": tikr,"ations": ations})
        print(f"df1 is {df1}")
