@@ -72,12 +72,11 @@ class fetch:
          valueprev = value
          i = i + 1
 
-    def getit(self,client11,stock_dict2):
+    def getit(self,client11,list21,stock_dict2):
        #list2 = ["SNOW","BRK.B"]
-       list2 = ["SNOW","BRK.B","LLY","AVGO","DE"]
+       #self.list2 = list21
        #print(stock_dict2)
-       time.sleep(60)
-       for x in list2:
+       for x in list21:
          aggs = client11.get_previous_close_agg(x)
          details = client11.get_ticker_details(x)
          detailcap = details.market_cap
@@ -95,8 +94,7 @@ class fetch:
          stock_dict2 = { **stock_dict2, x : [ detailcap , now2 ] }
   #p1.printout()
        #print(stock_dict2)
-       p1.ascend(stock_dict2)
-
+       return stock_dict2
 
 #main BEGINS
 if __name__ == "__main__":
@@ -110,35 +108,8 @@ if __name__ == "__main__":
  #list1 = ["META", "NVDA","AAPL"]
  stock_dict = {}
  list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
- for x in list1:
-  aggs = client1.get_previous_close_agg(x)
-  #print(f'Timestamp is {aggs.PreviousCloseAgg}') 
-  #aggs = client1.get_aggs(
-  #  x,
-  #  1,
-  #  "day",
-  #  "2024-11-15",
-  #  "2024-11-15"
-    #limit=1 
-  #)
-    #sggs.append(a)
-  details = client1.get_ticker_details(x)
-  #print(f'aggs is {aggs}')
-  detailcap = details.market_cap
-  aggs1 = aggs[0]
-  #aggs2 = aggs1[1] 
-  #print(f"aggs1 is {aggs2}")
-  pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
-  l21 = pl.stdout
- # os.system(grep1)
-  p3 = "awk \'{split($0,a,\",\"); print a[6]}\'"
-  l22 = subprocess.run(['echo "{}" | {}'.format(l21,p3)], capture_output=True, shell=True, text=True, check=False)
-  l23 = l22.stdout
-  p4 = "awk \'{split($0,a,\"=\"); print a[2]}\'"
-  l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
-  p5 = l23.stdout
-  now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-  now2 = datetime.datetime.now().strftime('%d-%m-%y')
-  stock_dict = { **stock_dict, x : [ detailcap , now2 ] }
-  #p1.printout() 
- new23 = p1.getit(client1,stock_dict)
+ new24_dict = p1.getit(client1,list1,stock_dict)
+ list2 = ["SNOW","BRK.B","LLY","AVGO","DE"]
+ time.sleep(60)
+ new25_dict = p1.getit(client1,list2,new24_dict)
+ p1.ascend(new25_dict)
