@@ -48,7 +48,7 @@ class fetch:
 
        uplist = sorted(myList1,key=lambda x: x[1])
        revlist = sorted(myList1,key=lambda x: x[1], reverse=True)
-
+       
        myList.sort()
        myList1.sort()
 
@@ -58,7 +58,8 @@ class fetch:
          print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
          valueprev = value
          i = i + 1  
-      
+       p1.strmlit(revlist)
+ 
        print(f'Ascending order most-valuable-company from the list\n')
        i = len(uplist) 
        for key,value in uplist:
@@ -66,7 +67,6 @@ class fetch:
          valueprev = value
          i = i - 1 
        #p1.diff(revlist)
-       p1.strmlit(uplist)
 
     def diff(self,dict2):
        print(dict2)
@@ -106,7 +106,8 @@ class fetch:
        serial = []
        tikr = []
        ations = []
-       my_table = st.table()
+       placeholder1 = st.empty()
+       my_table = st.empty() 
        for key,value in dict_s:
          value2 = numerize.numerize(value,4)
          serial.append(i)
@@ -118,7 +119,24 @@ class fetch:
        #my_table.add_rows(df1)
          # print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
        valueprev = value
-       st.dataframe(df1)
+       st.dataframe(df1,hide_index=True)
+    
+    def pbar(self): 
+       # Add a placeholder
+       placeholder1 = st.empty()
+       bar = st.progress(0)
+       placeholder1.markdown(" Fetching ticker valuations...")
+       for i in range(61):
+          # Update the progress bar with each iteration.
+          #latest_iteration.text(f'Iteration {i+1}')
+          time.sleep(1)
+          bar.progress(i+2)
+       placeholder1.empty()
+       placeholder1.markdown("...and now we\'re done!")
+       time.sleep(2)
+       bar.empty()
+       placeholder1.empty()
+       
 
 #main BEGINS
 if __name__ == "__main__":
@@ -134,7 +152,8 @@ if __name__ == "__main__":
  list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  new24_dict = p1.getit(client1,list1,stock_dict)
  list2 = ["SNOW","BRK.B","LLY","AVGO","DE"]
- time.sleep(60)
+ #time.sleep(60)
+ p1.pbar()
  new25_dict = p1.getit(client1,list2,new24_dict)
  p1.ascend(new25_dict)
 # p1.strmlit(new25_dict)
