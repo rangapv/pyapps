@@ -1,6 +1,6 @@
 polygon-api-client
 python-dotenv
-numerize
 streamlit
+numerize
 numpy
 pandas
