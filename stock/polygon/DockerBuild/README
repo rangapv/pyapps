@@ -1,0 +1,10 @@
+STEPS:
+1. Copy the API_KEY into ./.env file in this folder
+
+BUILD:
+docker build -t TAG-NAME .
+docker run -p 8501:8501 TAG-NAME
+
+BROWSER:
+go-to: http://localhost:8501
+ 
