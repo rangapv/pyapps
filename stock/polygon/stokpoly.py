@@ -124,18 +124,19 @@ class fetch:
     def pbar(self): 
        # Add a placeholder
        placeholder1 = st.empty()
-       bar = st.progress(0)
-       placeholder1.markdown(" Fetching ticker valuations...")
+       placeholder1.markdown("Fetching ticker valuations...")
+       bar = st.progress(1)
        for i in range(61):
           # Update the progress bar with each iteration.
-          #latest_iteration.text(f'Iteration {i+1}')
           time.sleep(1)
-          bar.progress(i+2)
-       placeholder1.empty()
+          prog1 = i/61
+          prog1cent = prog1 * 100
+          prog2cent = round(prog1cent)
+          bar.progress(prog2cent)
        placeholder1.markdown("...and now we\'re done!")
-       time.sleep(2)
-       bar.empty()
+       time.sleep(1) 
        placeholder1.empty()
+       bar.empty()
        
 
 #main BEGINS
