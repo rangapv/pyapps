@@ -1,0 +1,7 @@
+polygon-api-client
+python-dotenv
+streamlit
+numerize
+numpy
+pandas
+awslambdaric
